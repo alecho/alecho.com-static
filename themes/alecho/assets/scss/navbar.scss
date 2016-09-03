@@ -1,0 +1,44 @@
+.navbar.navbar-inverse {
+	min-height: $navbar-height;
+	border-radius: 0;
+	background-color: $secondary;
+	margin-bottom: 0;
+	border-bottom-color: $primary;
+	font-family: $font-family-sans-serif;
+	font-weight: 400;
+	ul.navbar-nav {
+		li {
+			font-size: $navbar-font-size;
+			a {
+				padding-top: 	$navbar-padding-top;
+				padding-bottom:	$navbar-padding-bottom;
+				color: $navbar-link-color;
+				&:hover, &:focus {
+					color: $navbar-link-color-hover;
+				}
+			}
+		}
+	}
+	div.navbar-header {
+
+		a {
+			&.navbar-brand {
+				height: $navbar-height;
+				font-size: $navbar-font-size;
+				color: $navbar-link-color;
+				padding-top: 	$navbar-padding-top;
+				padding-bottom:	$navbar-padding-bottom;
+			}
+			&:hover, &:focus {
+				color: $navbar-link-color-hover;
+			}
+		}
+
+		button.navbar-toggle {
+			margin-right: 8px;
+			padding: floor(($navbar-height - 12px)/2) 10px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+	}
+}

@@ -1,0 +1,86 @@
+//
+html {
+  height: 100%;
+  max-height: 100%;
+  font-size: $font-size-base;
+}
+
+body {
+  color: $text-color;
+  background: $body-bg;
+  height: 100%;
+  max-height: 100%;
+  font-family: $font-family-sans-serif, serif;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  text-rendering: optimizeLegibility;
+}
+
+.content {
+  min-height: 100%;
+}
+
+::-moz-selection {
+  color: $selection-color;
+  background: $selection-bg;
+  text-shadow: none;
+}
+
+::selection {
+  color: $selection-color;
+  background: $selection-bg;
+  text-shadow: none;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  margin-top: 0;
+  font-weight: normal;
+  transition: font-size ease 0.3s;
+}
+
+a {
+  color: $link-color;
+  transition: color ease 0.3s;
+  text-decoration: none;
+  &:hover, &:focus {
+    color: $link-color-hover;
+    text-decoration: none;
+  }
+  &[href*="alecho.com/rss"] {
+    &:hover {
+      color: #FFA500
+    }
+  }
+  &[href*="localhost:2368/rss"] {
+    &:hover {
+      color: #FFA500
+    }
+  }
+}
+
+p {
+  transition: font-size ease 0.3s;
+}
+
+span {
+
+  &.muted {
+    color: $gray-light
+  }
+
+}
+
+.blog-title {
+  font-family: $font-family-serif;
+}
+
+.blog-description {
+  font-family: $font-family-sans-serif;
+}
+
+main {
+  overflow: auto;
+  padding-bottom: 205px;
+}

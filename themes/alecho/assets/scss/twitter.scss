@@ -1,0 +1,14 @@
+article section iframe[id^=twitter-widget-] {
+	margin: 0 auto !important;
+	div.content {
+		a {
+			color: $primary !important;
+		}
+	}
+}
+
+a[href*="twitter.com"] {
+	&:hover {
+		color: $bc-twitter;
+	}
+}
