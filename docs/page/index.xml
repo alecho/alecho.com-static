@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on alecho.com</title>
+    <link>http://alecho.github.io/page/</link>
+    <description>Recent content in Pages on alecho.com</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Sep 2016 00:14:58 -0400</lastBuildDate>
+    <atom:link href="http://alecho.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>contact</title>
+      <link>http://alecho.github.io/page/contact/</link>
+      <pubDate>Sat, 03 Sep 2016 00:14:58 -0400</pubDate>
+      
+      <guid>http://alecho.github.io/page/contact/</guid>
+      <description>
+
+&lt;h3 id=&#34;pick-your-poison&#34;&gt;Pick Your Poison&lt;/h3&gt;
+
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;col-xs-12&#34;&gt;
+    &lt;i class=&#34;fa fa-envelope-o&#34;&gt;&lt;/i&gt;
+    Andrew &lt;strong&gt;at&lt;/strong&gt; &lt;em&gt;the above domain&lt;/em&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;row&#34;&gt;
+  &lt;div class=&#34;col-xs-12&#34;&gt;
+    &lt;a href=&#34;https://twitter.com/intent/tweet?screen_name=_alecho&#34; data-size=&#34;large&#34; data-related=&#34;_alecho&#34;&gt;&lt;i class=&#34;fa fa-twitter&#34;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&#34;https://twitter.com/intent/tweet?screen_name=_alecho&#34; data-related=&#34;_alecho&#34;&gt;Twitter&lt;/a&gt;
+&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&#39;://platform.twitter.com/widgets.js&#39;;fjs.parentNode.insertBefore(js,fjs);}}(document, &#39;script&#39;, &#39;twitter-wjs&#39;);&lt;/script&gt;
+  &lt;/div&gt;
+  &lt;div class=&#34;col-md-3&#34;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>about</title>
+      <link>http://alecho.github.io/page/about/</link>
+      <pubDate>Mon, 03 Mar 2014 00:27:07 -0400</pubDate>
+      
+      <guid>http://alecho.github.io/page/about/</guid>
+      <description>&lt;!-- ![Me](http://www.alecho.com/img/andrewlechowicz.jpg) --&gt;
+
+&lt;p class=&#34;lead&#34;&gt;Andrew Lechowicz is a web developer, avid sound recording hobbyist, musician and dog lover. He is currently employed as a Web Developer in central Maryland.&lt;/p&gt;
+
+&lt;p&gt;Lechowicz&amp;rsquo;s job responsibilities as Web Developer include designing and developing database-driven web applications. This includes server-side programming, database creation and management, as well as client-side scripting. Currently a student at Hagerstown Community College, Lechowicz is fluent in PHP, MySQL, jQuery, AJAX, CSS, and HTML. He enjoys that every day is challenging, different and requires creative problem solving.&lt;/p&gt;
+
+&lt;p&gt;In March 2012, Andrew joined Power Marketing as a web developer responsible for designing and building database driven web applications, including server-side programming, database creation and management, and client-side scripting. Fluent in PHP, MySQL, jQuery, AJAX, CSS and HTML, Andrew enjoys that every day on the job is challenging, different and requires creative problem solving.&lt;/p&gt;
+
+&lt;p&gt;In addition to working at Power Marketing, Andrew is also enrolled at Hagerstown Community College and volunteers for the Valley Co-Op on the tech team, fixing bugs with their online ordering system. Andrew lives a short drive from the Power Marketing Offices with his border collie, Whiskey. &amp;ldquo;I spend most of my time with her,&amp;rdquo; he says.&lt;/p&gt;
+
+&lt;p&gt;Andrew is currently working with Neon Reel Entertainment recording, mixing, and designing 5.1 Dolby® Digital Surround Sound sound for an upcoming film.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
