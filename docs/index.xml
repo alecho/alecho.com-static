@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>alecho.com</title>
-    <link>http://alecho.github.io/</link>
+    <link>http://alecho.github.io/alecho/</link>
     <description>Recent content on alecho.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 03 Sep 2016 00:14:58 -0400</lastBuildDate>
-    <atom:link href="http://alecho.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://alecho.github.io/alecho/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>contact</title>
-      <link>http://alecho.github.io/page/contact/</link>
+      <link>http://alecho.github.io/alecho/page/contact/</link>
       <pubDate>Sat, 03 Sep 2016 00:14:58 -0400</pubDate>
       
-      <guid>http://alecho.github.io/page/contact/</guid>
+      <guid>http://alecho.github.io/alecho/page/contact/</guid>
       <description>
 
 &lt;h3 id=&#34;pick-your-poison&#34;&gt;Pick Your Poison&lt;/h3&gt;
@@ -39,28 +39,28 @@
     
     <item>
       <title>random hamburger or how i learned to write software while working in fast food</title>
-      <link>http://alecho.github.io/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</link>
+      <link>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</link>
       <pubDate>Fri, 02 Sep 2016 23:51:08 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</guid>
+      <guid>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</guid>
       <description></description>
     </item>
     
     <item>
       <title>json api with phoenix</title>
-      <link>http://alecho.github.io/2016/09/02/json-api-with-phoenix</link>
+      <link>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</link>
       <pubDate>Fri, 02 Sep 2016 23:46:17 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/09/02/json-api-with-phoenix</guid>
+      <guid>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</guid>
       <description></description>
     </item>
     
     <item>
       <title>Getting Ready for CakePHP 3</title>
-      <link>http://alecho.github.io/2016/08/28/getting-ready-for-cakephp-3</link>
+      <link>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</link>
       <pubDate>Sun, 28 Aug 2016 14:36:32 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/08/28/getting-ready-for-cakephp-3</guid>
+      <guid>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</guid>
       <description>
 
 &lt;p&gt;With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.&lt;/p&gt;
@@ -288,10 +288,10 @@ $milti = [
     
     <item>
       <title>develop and deploy ghost with pm2</title>
-      <link>http://alecho.github.io/2015/05/01/develop-and-deploy-ghost-with-pm2</link>
+      <link>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</link>
       <pubDate>Fri, 01 May 2015 10:21:48 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2015/05/01/develop-and-deploy-ghost-with-pm2</guid>
+      <guid>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</guid>
       <description>
 
 &lt;!-- Introduction here --&gt;
@@ -498,10 +498,10 @@ HEAD is now at &amp;lt;git hash for latest commit on origin/staging&amp;gt; &amp
     
     <item>
       <title>about</title>
-      <link>http://alecho.github.io/page/about/</link>
+      <link>http://alecho.github.io/alecho/page/about/</link>
       <pubDate>Mon, 03 Mar 2014 00:27:07 -0400</pubDate>
       
-      <guid>http://alecho.github.io/page/about/</guid>
+      <guid>http://alecho.github.io/alecho/page/about/</guid>
       <description>&lt;!-- ![Me](http://www.alecho.com/img/andrewlechowicz.jpg) --&gt;
 
 &lt;p class=&#34;lead&#34;&gt;Andrew Lechowicz is a web developer, avid sound recording hobbyist, musician and dog lover. He is currently employed as a Web Developer in central Maryland.&lt;/p&gt;

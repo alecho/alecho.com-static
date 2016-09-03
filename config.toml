@@ -1,4 +1,4 @@
-baseurl = "http://alecho.github.io"
+baseurl = "http://alecho.github.io/alecho"
 languageCode = "en-us"
 title = "alecho.com"
 publishdir = "docs"

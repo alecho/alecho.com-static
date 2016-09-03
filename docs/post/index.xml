@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on alecho.com</title>
-    <link>http://alecho.github.io/post/</link>
+    <link>http://alecho.github.io/alecho/post/</link>
     <description>Recent content in Posts on alecho.com</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Sep 2016 23:51:08 -0400</lastBuildDate>
-    <atom:link href="http://alecho.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://alecho.github.io/alecho/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>random hamburger or how i learned to write software while working in fast food</title>
-      <link>http://alecho.github.io/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</link>
+      <link>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</link>
       <pubDate>Fri, 02 Sep 2016 23:51:08 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</guid>
+      <guid>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</guid>
       <description></description>
     </item>
     
     <item>
       <title>json api with phoenix</title>
-      <link>http://alecho.github.io/2016/09/02/json-api-with-phoenix</link>
+      <link>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</link>
       <pubDate>Fri, 02 Sep 2016 23:46:17 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/09/02/json-api-with-phoenix</guid>
+      <guid>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</guid>
       <description></description>
     </item>
     
     <item>
       <title>Getting Ready for CakePHP 3</title>
-      <link>http://alecho.github.io/2016/08/28/getting-ready-for-cakephp-3</link>
+      <link>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</link>
       <pubDate>Sun, 28 Aug 2016 14:36:32 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2016/08/28/getting-ready-for-cakephp-3</guid>
+      <guid>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</guid>
       <description>
 
 &lt;p&gt;With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.&lt;/p&gt;
@@ -260,10 +260,10 @@ $milti = [
     
     <item>
       <title>develop and deploy ghost with pm2</title>
-      <link>http://alecho.github.io/2015/05/01/develop-and-deploy-ghost-with-pm2</link>
+      <link>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</link>
       <pubDate>Fri, 01 May 2015 10:21:48 -0400</pubDate>
       
-      <guid>http://alecho.github.io/2015/05/01/develop-and-deploy-ghost-with-pm2</guid>
+      <guid>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</guid>
       <description>
 
 &lt;!-- Introduction here --&gt;
