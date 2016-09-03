@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+    <meta charset="utf-8">
+
+    <base href="{{ .Site.BaseURL }}">
+    <title>{{ .Site.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+
+</head>
+<body lang="en">
+
+{{ partial "header.html" . }}
+
+<main role="main">
+  <div>
+    {{ range first 10 .Data.Pages }}
+        <article class="post">
+            <header>
+                <h2><a href="{{.Permalink}}">{{.Title}}</a></h2>
+                <span class="post-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02"}}">{{ .Date.Format "January 2, 2006"}}</time>
+                    {{ .Params.tags }}
+                </span>
+            </header>
+            <section class="post-excerpt">
+                <p>{{ .Summary }}&hellip;</p>
+            </section>
+        </article>
+    {{ end }}
+  </div>
+</main>
+
+{{ partial "footer.html" . }}
+</body>
