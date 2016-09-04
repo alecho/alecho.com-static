@@ -1,43 +1,235 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on alecho.com</title>
+    <title>Posts on The Blog of Andrew Lechowicz</title>
     <link>http://alecho.github.io/alecho/post/</link>
-    <description>Recent content in Posts on alecho.com</description>
+    <description>Recent content in Posts on The Blog of Andrew Lechowicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Sep 2016 23:51:08 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2015 10:21:48 -0400</lastBuildDate>
     <atom:link href="http://alecho.github.io/alecho/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>random hamburger or how i learned to write software while working in fast food</title>
-      <link>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</link>
-      <pubDate>Fri, 02 Sep 2016 23:51:08 -0400</pubDate>
+      <title>Develop &amp; Deploy Ghost with PM2</title>
+      <link>http://alecho.github.io/alecho/develop--deploy-ghost-with-pm2</link>
+      <pubDate>Fri, 01 May 2015 10:21:48 -0400</pubDate>
       
-      <guid>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>json api with phoenix</title>
-      <link>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</link>
-      <pubDate>Fri, 02 Sep 2016 23:46:17 -0400</pubDate>
-      
-      <guid>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</guid>
-      <description></description>
+      <guid>http://alecho.github.io/alecho/develop--deploy-ghost-with-pm2</guid>
+      <description>
+
+&lt;!-- Introduction here --&gt;
+
+&lt;h2 id=&#34;setting-up&#34;&gt;Setting Up&lt;/h2&gt;
+
+&lt;p&gt;If you already have a git repository setup and a &lt;code&gt;package.json&lt;/code&gt; you can skip to &lt;a href=&#34;#dependencies&#34;&gt;Dependencies&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;project&#34;&gt;Project&lt;/h3&gt;
+
+&lt;p&gt;Create a git repository for this project:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;git init &amp;lt;project name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd &amp;lt;project name&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then create your package.json the easy way:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;npm init&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;dependencies&#34;&gt;Dependencies&lt;/h3&gt;
+
+&lt;p&gt;Install global dependencies like &lt;a href=&#34;https://www.npmjs.com/package/grunt&#34;&gt;Grunt&lt;/a&gt; and &lt;a href=&#34;https://www.npmjs.com/package/pm2&#34;&gt;PM2&lt;/a&gt; and package dependencies like &lt;a href=&#34;https://www.npmjs.com/package/ghost&#34;&gt;Ghost&lt;/a&gt; and &lt;a href=&#34;https://docs.npmjs.com/cli/shrinkwrap&#34;&gt;Shrinkwrap&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;npm install -g grunt pm2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install ghost shrinkwrap --save&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Next, create the project&amp;rsquo;s index file at the root of the project. This is the entry point PM2/Node.js will use to start your app This can be whatever you like and I&amp;rsquo;ll use &lt;code&gt;index.js&lt;/code&gt; for the rest of the post.&lt;/p&gt;
+
+&lt;p&gt;Add the following to &lt;code&gt;index.js&lt;/code&gt; and save it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// Start Ghost
+var ghost = require(&#39;ghost&#39;);
+ghost().then(function (ghostServer) {
+    ghostServer.start();
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With that you can now run Ghost:
+&lt;code&gt;pm2 start index.js --name &amp;quot;&amp;lt;process name&amp;gt;&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Upon visiting &lt;a href=&#34;http://localhost:2368&#34;&gt;http://localhost:2368&lt;/a&gt; you should see the standard blog with the standard Casper theme and the default &amp;ldquo;Welcome to Ghost&amp;rdquo; blog post.&lt;/p&gt;
+
+&lt;p&gt;Visit &lt;a href=&#34;http://localhost:2368/ghost/&#34;&gt;http://localhost:2368/ghost/&lt;/a&gt; to setup your development blog. Be sure to remember your username and password for the future. It doesn&amp;rsquo;t need to be a real email address or even a secure password at thispoint because you&amp;rsquo;ll only be accessing the backend from your local computer. If the page hangs quite some time, just refresh and you should be prompted to log in.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s it. You&amp;rsquo;re all setup.&lt;/p&gt;
+
+&lt;h2 id=&#34;development&#34;&gt;Development&lt;/h2&gt;
+
+&lt;p&gt;If your Ghost server is still running, stop it with:
+&lt;code&gt;pm2 stop &amp;lt;app name&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Up until now, Ghost has been using the &lt;code&gt;content&lt;/code&gt; directory in &lt;code&gt;node_modules/ghost/&lt;/code&gt; to store application data, themes, images, and Ghost apps. We&amp;rsquo;ll need to define a new place to store all of these things so npm doesn&amp;rsquo;t overwrite on the next &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;npm update&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-a-config-js-for-ghost&#34;&gt;Create a &lt;code&gt;config.js&lt;/code&gt; for Ghost&lt;/h3&gt;
+
+&lt;p&gt;Before we can adjust and configuration values to tell Ghost where we expect the &lt;code&gt;content&lt;/code&gt; directory to be, as well as a host of other things, such as which port to listen on and how to send emails, we need a configuration file and we need to tell Ghost where it is.&lt;/p&gt;
+
+&lt;p&gt;Grab the example config from &lt;a href=&#34;https://github.com/TryGhost/Ghost/blob/master/config.example.js&#34;&gt;Github&lt;/a&gt; or copy it from &lt;code&gt;/node_modules/ghost/config.example.js&lt;/code&gt;. Run &lt;code&gt;cp node_modules/ghost/config.example.js config.js&lt;/code&gt; to copy the one npm grabbed for you. Edit the new &lt;code&gt;config.js&lt;/code&gt; to remove any testing related configs for the Ghost core. This will prevent you from getting confused later on. You should be left with a &amp;ldquo;production&amp;rdquo; object and a &amp;ldquo;development&amp;rdquo; object in the &amp;ldquo;config&amp;rdquo; object in &lt;code&gt;config.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ghost expects the file and folder stucture from before to be in place wherever we tell it the &lt;code&gt;content&lt;/code&gt; directory is. Run &lt;code&gt;cp -R node_modules/ghost/content/ content/&lt;/code&gt; to copy the entire content directory from &lt;code&gt;node_modules&lt;/code&gt; to the root of the project.&lt;/p&gt;
+
+&lt;h3 id=&#34;pass-configuration-into-ghost&#34;&gt;Pass Configuration into Ghost&lt;/h3&gt;
+
+&lt;p&gt;In &lt;code&gt;index.js&lt;/code&gt; we&amp;rsquo;re going to tell ghost to use the &lt;code&gt;config.js&lt;/code&gt; file as it&amp;rsquo;s configuration file. We can pass the &lt;code&gt;ghost()&lt;/code&gt; call an object to tell it which configuration file to load:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var path = require(&#39;path&#39;),
+    ghost = require(&#39;ghost&#39;);
+
+ghost({
+  config: path.join(__dirname, &#39;config.js&#39;)
+}).then(function (ghostServer) {
+  ghostServer.start();
+});
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Don&amp;rsquo;t forget to create and instance of the Node.js &lt;code&gt;path&lt;/code&gt; object on line 1.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You can now create themes and apps as you normally would with Ghost. Just be sure to edit files in the &lt;code&gt;content/&lt;/code&gt; directory at the root of the project, &lt;strong&gt;Not&lt;/strong&gt; the one in &lt;code&gt;node_modules/ghost/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;before-you-commit&#34;&gt;Before You Commit&lt;/h3&gt;
+
+&lt;p&gt;Before you commit changes it&amp;rsquo;s probably a good idea to stop the PM2 process and add &lt;code&gt;content/data/*.db&lt;/code&gt; to your &lt;code&gt;.gitignore&lt;/code&gt; since it&amp;rsquo;s the folder SQLite uses to store databases and they have the &lt;code&gt;.db&lt;/code&gt; extention.&lt;/p&gt;
+
+&lt;p&gt;If you already commited the SQLite database you can still edit your &lt;code&gt;.gitignore&lt;/code&gt; and then run &lt;code&gt;git m -r --cached content/data/*db&lt;/code&gt; to remove it from git&amp;rsquo;s index. Finally, commit the &lt;code&gt;.gitignore&lt;/code&gt; and the &amp;ldquo;deleted&amp;rdquo; files from git&amp;rsquo;s index as usual.&lt;/p&gt;
+
+&lt;h2 id=&#34;setting-up-pm2-for-deployment&#34;&gt;Setting up PM2 for Deployment&lt;/h2&gt;
+
+&lt;p&gt;Since version 0.9.0, PM2 has been able to deploy code for you. To see the commands availble for deployment run &lt;code&gt;pm2 deploy help&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-an-ecosystem-json&#34;&gt;Create an ecosystem.json&lt;/h3&gt;
+
+&lt;p&gt;To get started setting up PM2 for deployment let&amp;rsquo;s have PM2 do some of the work for us. While in your project root, run &lt;code&gt;pm2 ecosystem&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For me, this generated an &lt;code&gt;ecosystem.json5&lt;/code&gt; file in the project root. &lt;a href=&#34;http://json5.org&#34;&gt;JSON5&lt;/a&gt; is an extention to JSON that adds some additional features to JSON like comments and unquoted keys. I&amp;rsquo;m not a fan of JSON5 for a couple of reasons, this little warning doesn&amp;rsquo;t help:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;JSON5 is not an official successor to JSON, and JSON5 content may not work with existing JSON parsers. For this reason, JSON5 files use a new .json5 extension.
+- &lt;a href=&#34;http://json5.org&#34;&gt;json5.org&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Later, when I tried to use thie file, PM2 was still looking for &lt;code&gt;ecosystem.json&lt;/code&gt; not &lt;code&gt;ecosystem.json5&lt;/code&gt; so I decided to rename it to the former. I&amp;rsquo;ll suggest you do the same until I know differently.&lt;/p&gt;
+
+&lt;p&gt;Once the file has been generated, you&amp;rsquo;ll want to edit it with your projects configuration. Sine we rename the extention, we should make sure it&amp;rsquo;s valid JSON first.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s what my &lt;code&gt;ecosystem.json&lt;/code&gt; looks like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;apps&amp;quot;: [{
+		&amp;quot;name&amp;quot;: &amp;quot;&amp;lt;project name&amp;gt;&amp;quot;,
+		&amp;quot;script&amp;quot;: &amp;quot;index.js&amp;quot;
+  }],
+
+  &amp;quot;deploy&amp;quot;: {
+    &amp;quot;production&amp;quot; : {
+      &amp;quot;user&amp;quot;: &amp;quot;&amp;lt;user to run as on production&amp;gt;&amp;quot;,
+      &amp;quot;host&amp;quot;: &amp;quot;&amp;lt;production IP or domain&amp;gt;&amp;quot;,
+      &amp;quot;ref&amp;quot;: &amp;quot;origin/&amp;lt;production branch&amp;gt;&amp;quot;,
+      &amp;quot;repo&amp;quot;: &amp;quot;git@github.com:&amp;lt;Github username&amp;gt;/&amp;lt;project name&amp;gt;.git&amp;quot;,
+      &amp;quot;path&amp;quot;: &amp;quot;/var/www/&amp;lt;production directory&amp;gt;&amp;quot;,
+      &amp;quot;post-deploy&amp;quot;: &amp;quot;npm install --production &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env production&amp;quot;,
+      &amp;quot;env&amp;quot;: {
+        &amp;quot;NODE_ENV&amp;quot;: &amp;quot;production&amp;quot;
+      }
+    },
+    &amp;quot;staging&amp;quot;: {
+      &amp;quot;user&amp;quot;: &amp;quot;&amp;lt;user to run as on stage&amp;gt;&amp;quot;,
+      &amp;quot;host&amp;quot;: &amp;quot;&amp;lt;staging IP or domain&amp;gt;&amp;quot;,
+      &amp;quot;ref&amp;quot;: &amp;quot;origin/&amp;lt;staging branch&amp;gt;&amp;quot;,
+      &amp;quot;repo&amp;quot;: &amp;quot;git@github.com:&amp;lt;github username&amp;gt;/&amp;lt;project name&amp;gt;.git&amp;quot;,
+      &amp;quot;path&amp;quot;: &amp;quot;/var/www/&amp;lt;staging directory&amp;gt;&amp;quot;,
+      &amp;quot;post-deploy&amp;quot;: &amp;quot;npm install --production &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env staging&amp;quot;,
+      &amp;quot;env&amp;quot;: {
+        &amp;quot;NODE_ENV&amp;quot;: &amp;quot;staging&amp;quot;
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the above config, &amp;ldquo;script&amp;rdquo; under &amp;ldquo;apps&amp;rdquo; array refers to the entry-point script you made above. I&amp;rsquo;ve been calling it &lt;code&gt;index.js&lt;/code&gt; in this post. I for my &lt;code&gt;staging&lt;/code&gt; config I tell PM2 to set my &lt;code&gt;NODE_ENV&lt;/code&gt; variable to be set to &amp;ldquo;staging&amp;rdquo; because in my config.js I have a &amp;ldquo;staging&amp;rdquo; key. Ghost will load the config key of the same name as the value of &lt;code&gt;NODE_ENV&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;deploy-key&#34;&gt;Deploy Key&lt;/h3&gt;
+
+&lt;p&gt;If your server is new you may not have setup public/private keypair authentication. Follow the instructions &lt;a href=&#34;https://help.github.com/articles/generating-ssh-keys/#platform-linux&#34;&gt;Github provides&lt;/a&gt;. You&amp;rsquo;ll then want to add this key as a deploy key for your project on Github. This will allow PM2 to authenticate with Github to clone the repo.&lt;/p&gt;
+
+&lt;p&gt;While you are also connected to the server you should install PM2 using npm, just as you did before locally (&lt;code&gt;npm install -g pm2&lt;/code&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;deploying&#34;&gt;Deploying&lt;/h3&gt;
+
+&lt;p&gt;Be sure that Github is in the server&amp;rsquo;s &lt;code&gt;known_hosts&lt;/code&gt; file or you&amp;rsquo;ll get cloning errors. This can be done by running &lt;code&gt;ssh git@github.com&lt;/code&gt; on the server and accepting the prompt to add it to the file.&lt;/p&gt;
+
+&lt;p&gt;We need to have PM2 setup the server for deployment. Run &lt;code&gt;pm2 deploy &amp;lt;ecosystem.json config key&amp;gt; setup&lt;/code&gt; from your local machine. For example, to setup my &amp;ldquo;staging&amp;rdquo; config above I would run &lt;code&gt;pm2 deploy staging setup&lt;/code&gt;. I would expect to see something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm2 deploy staging setup
+--&amp;gt; Deploying to staging environment
+--&amp;gt; on host &amp;lt;staging IP or domain&amp;gt;
+  ○ running setup
+  ○ cloning git@github.com:alecho/&amp;lt;project name&amp;gt;.git
+Cloning into &#39;/var/www/&amp;lt;staging directory&amp;gt;/source&#39;...
+Warning: Permanently added the RSA host key for IP address &#39;**Github&#39;s IP here**&#39; to the list of known hosts.
+  ○ setup complete
+--&amp;gt; Success
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once PM2 is done setting up the server run &lt;code&gt;pm2 deploy &amp;lt;ecosystem.json config key&amp;gt;&lt;/code&gt;. Just like above, this would be &lt;code&gt;pm2 deploy staging&lt;/code&gt; for my staging environment and should output something like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ pm2 deploy staging
+--&amp;gt; Deploying to staging environment
+--&amp;gt; on host &amp;lt;staging IP or &amp;gt;
+  ○ deploying
+  ○ hook pre-deploy
+  ○ fetching updates
+Fetching origin
+Warning: Permanently added the RSA host key for IP address &#39;**Github&#39;s IP here**&#39; to the list of known hosts.
+  ○ resetting HEAD to origin/staging
+HEAD is now at &amp;lt;git hash for latest commit on origin/staging&amp;gt; &amp;lt;commit message here&amp;gt;
+  ○ executing post-deploy `npm install &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env staging`
+
+** npm install output here **
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You shoudl then see the typical output of &lt;code&gt;pm2 list&lt;/code&gt; with the Ghost blog process running followed by:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Use `pm2 show &amp;lt;id|name&amp;gt;` to get more details about an app
+  ○ hook test
+  ○ successfully deployed origin/staging
+--&amp;gt; Success
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;that-s-it&#34;&gt;That&amp;rsquo;s It!&lt;/h3&gt;
+
+&lt;p&gt;You&amp;rsquo;re now able to deploy your latest changes to staging and production environments with ease. There&amp;rsquo;s no reason you couldn&amp;rsquo;t setup a deveopment enviroment with PM2 as well but I find that Ghost is easy enough to just &amp;ldquo;clone&amp;rdquo;, &amp;ldquo;install&amp;rdquo;, and &amp;ldquo;start&amp;rdquo; that I haven&amp;rsquo;t yet.&lt;/p&gt;
+
+&lt;p&gt;If you run into issues or know of a better way of doing things let me know in the comments.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Getting Ready for CakePHP 3</title>
-      <link>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</link>
-      <pubDate>Sun, 28 Aug 2016 14:36:32 -0400</pubDate>
+      <link>http://alecho.github.io/alecho/getting-ready-for-cakephp-3</link>
+      <pubDate>Mon, 19 May 2014 14:36:32 -0400</pubDate>
       
-      <guid>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</guid>
+      <guid>http://alecho.github.io/alecho/getting-ready-for-cakephp-3</guid>
       <description>
 
 &lt;p&gt;With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.&lt;/p&gt;
 
-&lt;h2 id=&#34;php-5-4-span-class-muted-3-span&#34;&gt;PHP 5.4&lt;span class=\&#34;muted\&#34;&gt;.3&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;php-5-4-span-class-muted-3-span&#34;&gt;PHP 5.4&lt;span class=&#34;muted&#34;&gt;.3&lt;/span&gt;&lt;/h2&gt;
 
 &lt;h3 id=&#34;new-features&#34;&gt;New Features&lt;/h3&gt;
 
@@ -255,216 +447,6 @@ $milti = [
 &lt;p&gt;The line in question is the first line of the loop. PHP uses the &lt;code&gt;SEPARATE_ZVAL&lt;/code&gt; macro internally for copy-on-write functionality. It creates a separate copy of a zval (a type of data container) if the container has multiple references. In the 5.5.6 tag it has simply been removed because the copying behavior does not serve a purpose. Many PHP frameworks, CakePHP included, use &lt;code&gt;array_merge()&lt;/code&gt; and &lt;code&gt;func_get_args()&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.php.net/ChangeLog-5.php#5.5.6&#34;&gt;http://www.php.net/ChangeLog-5.php#5.5.6&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>develop and deploy ghost with pm2</title>
-      <link>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</link>
-      <pubDate>Fri, 01 May 2015 10:21:48 -0400</pubDate>
-      
-      <guid>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</guid>
-      <description>
-
-&lt;!-- Introduction here --&gt;
-
-&lt;h2 id=&#34;setting-up&#34;&gt;Setting Up&lt;/h2&gt;
-
-&lt;p&gt;If you already have a git repository setup and a &lt;code&gt;package.json&lt;/code&gt; you can skip to &lt;a href=&#34;#dependencies&#34;&gt;Dependencies&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;project&#34;&gt;Project&lt;/h3&gt;
-
-&lt;p&gt;Create a git repository for this project:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;git init &amp;lt;project name&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;cd &amp;lt;project name&amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then create your package.json the easy way:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;npm init&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;dependencies&#34;&gt;Dependencies&lt;/h3&gt;
-
-&lt;p&gt;Install global dependencies like &lt;a href=&#34;https://www.npmjs.com/package/grunt&#34;&gt;Grunt&lt;/a&gt; and &lt;a href=&#34;https://www.npmjs.com/package/pm2&#34;&gt;PM2&lt;/a&gt; and package dependencies like &lt;a href=&#34;https://www.npmjs.com/package/ghost&#34;&gt;Ghost&lt;/a&gt; and &lt;a href=&#34;https://docs.npmjs.com/cli/shrinkwrap&#34;&gt;Shrinkwrap&lt;/a&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;npm install -g grunt pm2&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm install ghost shrinkwrap --save&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Next, create the project&amp;rsquo;s index file at the root of the project. This is the entry point PM2/Node.js will use to start your app This can be whatever you like and I&amp;rsquo;ll use &lt;code&gt;index.js&lt;/code&gt; for the rest of the post.&lt;/p&gt;
-
-&lt;p&gt;Add the following to &lt;code&gt;index.js&lt;/code&gt; and save it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// Start Ghost
-var ghost = require(&#39;ghost&#39;);
-ghost().then(function (ghostServer) {
-    ghostServer.start();
-});
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With that you can now run Ghost:
-&lt;code&gt;pm2 start index.js --name &amp;quot;&amp;lt;process name&amp;gt;&amp;quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon visiting &lt;a href=&#34;http://localhost:2368&#34;&gt;http://localhost:2368&lt;/a&gt; you should see the standard blog with the standard Casper theme and the default &amp;ldquo;Welcome to Ghost&amp;rdquo; blog post.&lt;/p&gt;
-
-&lt;p&gt;Visit &lt;a href=&#34;http://localhost:2368/ghost/&#34;&gt;http://localhost:2368/ghost/&lt;/a&gt; to setup your development blog. Be sure to remember your username and password for the future. It doesn&amp;rsquo;t need to be a real email address or even a secure password at thispoint because you&amp;rsquo;ll only be accessing the backend from your local computer. If the page hangs quite some time, just refresh and you should be prompted to log in.&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s it. You&amp;rsquo;re all setup.&lt;/p&gt;
-
-&lt;h2 id=&#34;development&#34;&gt;Development&lt;/h2&gt;
-
-&lt;p&gt;If your Ghost server is still running, stop it with:
-&lt;code&gt;pm2 stop &amp;lt;app name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Up until now, Ghost has been using the &lt;code&gt;content&lt;/code&gt; directory in &lt;code&gt;node_modules/ghost/&lt;/code&gt; to store application data, themes, images, and Ghost apps. We&amp;rsquo;ll need to define a new place to store all of these things so npm doesn&amp;rsquo;t overwrite on the next &lt;code&gt;npm install&lt;/code&gt; or &lt;code&gt;npm update&lt;/code&gt; command.&lt;/p&gt;
-
-&lt;h3 id=&#34;create-a-config-js-for-ghost&#34;&gt;Create a &lt;code&gt;config.js&lt;/code&gt; for Ghost&lt;/h3&gt;
-
-&lt;p&gt;Before we can adjust and configuration values to tell Ghost where we expect the &lt;code&gt;content&lt;/code&gt; directory to be, as well as a host of other things, such as which port to listen on and how to send emails, we need a configuration file and we need to tell Ghost where it is.&lt;/p&gt;
-
-&lt;p&gt;Grab the example config from &lt;a href=&#34;https://github.com/TryGhost/Ghost/blob/master/config.example.js&#34;&gt;Github&lt;/a&gt; or copy it from &lt;code&gt;/node_modules/ghost/config.example.js&lt;/code&gt;. Run &lt;code&gt;cp node_modules/ghost/config.example.js config.js&lt;/code&gt; to copy the one npm grabbed for you. Edit the new &lt;code&gt;config.js&lt;/code&gt; to remove any testing related configs for the Ghost core. This will prevent you from getting confused later on. You should be left with a &amp;ldquo;production&amp;rdquo; object and a &amp;ldquo;development&amp;rdquo; object in the &amp;ldquo;config&amp;rdquo; object in &lt;code&gt;config.js&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ghost expects the file and folder stucture from before to be in place wherever we tell it the &lt;code&gt;content&lt;/code&gt; directory is. Run &lt;code&gt;cp -R node_modules/ghost/content/ content/&lt;/code&gt; to copy the entire content directory from &lt;code&gt;node_modules&lt;/code&gt; to the root of the project.&lt;/p&gt;
-
-&lt;h3 id=&#34;pass-configuration-into-ghost&#34;&gt;Pass Configuration into Ghost&lt;/h3&gt;
-
-&lt;p&gt;In &lt;code&gt;index.js&lt;/code&gt; we&amp;rsquo;re going to tell ghost to use the &lt;code&gt;config.js&lt;/code&gt; file as it&amp;rsquo;s configuration file. We can pass the &lt;code&gt;ghost()&lt;/code&gt; call an object to tell it which configuration file to load:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var path = require(&#39;path&#39;),
-    ghost = require(&#39;ghost&#39;);
-
-ghost({
-  config: path.join(__dirname, &#39;config.js&#39;)
-}).then(function (ghostServer) {
-  ghostServer.start();
-});
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Don&amp;rsquo;t forget to create and instance of the Node.js &lt;code&gt;path&lt;/code&gt; object on line 1.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;You can now create themes and apps as you normally would with Ghost. Just be sure to edit files in the &lt;code&gt;content/&lt;/code&gt; directory at the root of the project, &lt;strong&gt;Not&lt;/strong&gt; the one in &lt;code&gt;node_modules/ghost/&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;before-you-commit&#34;&gt;Before You Commit&lt;/h3&gt;
-
-&lt;p&gt;Before you commit changes it&amp;rsquo;s probably a good idea to stop the PM2 process and add &lt;code&gt;content/data/*.db&lt;/code&gt; to your &lt;code&gt;.gitignore&lt;/code&gt; since it&amp;rsquo;s the folder SQLite uses to store databases and they have the &lt;code&gt;.db&lt;/code&gt; extention.&lt;/p&gt;
-
-&lt;p&gt;If you already commited the SQLite database you can still edit your &lt;code&gt;.gitignore&lt;/code&gt; and then run &lt;code&gt;git m -r --cached content/data/*db&lt;/code&gt; to remove it from git&amp;rsquo;s index. Finally, commit the &lt;code&gt;.gitignore&lt;/code&gt; and the &amp;ldquo;deleted&amp;rdquo; files from git&amp;rsquo;s index as usual.&lt;/p&gt;
-
-&lt;h2 id=&#34;setting-up-pm2-for-deployment&#34;&gt;Setting up PM2 for Deployment&lt;/h2&gt;
-
-&lt;p&gt;Since version 0.9.0, PM2 has been able to deploy code for you. To see the commands availble for deployment run &lt;code&gt;pm2 deploy help&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;create-an-ecosystem-json&#34;&gt;Create an ecosystem.json&lt;/h3&gt;
-
-&lt;p&gt;To get started setting up PM2 for deployment let&amp;rsquo;s have PM2 do some of the work for us. While in your project root, run &lt;code&gt;pm2 ecosystem&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;For me, this generated an &lt;code&gt;ecosystem.json5&lt;/code&gt; file in the project root. &lt;a href=&#34;http://json5.org&#34;&gt;JSON5&lt;/a&gt; is an extention to JSON that adds some additional features to JSON like comments and unquoted keys. I&amp;rsquo;m not a fan of JSON5 for a couple of reasons, this little warning doesn&amp;rsquo;t help:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;JSON5 is not an official successor to JSON, and JSON5 content may not work with existing JSON parsers. For this reason, JSON5 files use a new .json5 extension.
-- &lt;a href=&#34;http://json5.org&#34;&gt;json5.org&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Later, when I tried to use thie file, PM2 was still looking for &lt;code&gt;ecosystem.json&lt;/code&gt; not &lt;code&gt;ecosystem.json5&lt;/code&gt; so I decided to rename it to the former. I&amp;rsquo;ll suggest you do the same until I know differently.&lt;/p&gt;
-
-&lt;p&gt;Once the file has been generated, you&amp;rsquo;ll want to edit it with your projects configuration. Sine we rename the extention, we should make sure it&amp;rsquo;s valid JSON first.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;rsquo;s what my &lt;code&gt;ecosystem.json&lt;/code&gt; looks like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;apps&amp;quot;: [{
-		&amp;quot;name&amp;quot;: &amp;quot;&amp;lt;project name&amp;gt;&amp;quot;,
-		&amp;quot;script&amp;quot;: &amp;quot;index.js&amp;quot;
-  }],
-
-  &amp;quot;deploy&amp;quot;: {
-    &amp;quot;production&amp;quot; : {
-      &amp;quot;user&amp;quot;: &amp;quot;&amp;lt;user to run as on production&amp;gt;&amp;quot;,
-      &amp;quot;host&amp;quot;: &amp;quot;&amp;lt;production IP or domain&amp;gt;&amp;quot;,
-      &amp;quot;ref&amp;quot;: &amp;quot;origin/&amp;lt;production branch&amp;gt;&amp;quot;,
-      &amp;quot;repo&amp;quot;: &amp;quot;git@github.com:&amp;lt;Github username&amp;gt;/&amp;lt;project name&amp;gt;.git&amp;quot;,
-      &amp;quot;path&amp;quot;: &amp;quot;/var/www/&amp;lt;production directory&amp;gt;&amp;quot;,
-      &amp;quot;post-deploy&amp;quot;: &amp;quot;npm install --production &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env production&amp;quot;,
-      &amp;quot;env&amp;quot;: {
-        &amp;quot;NODE_ENV&amp;quot;: &amp;quot;production&amp;quot;
-      }
-    },
-    &amp;quot;staging&amp;quot;: {
-      &amp;quot;user&amp;quot;: &amp;quot;&amp;lt;user to run as on stage&amp;gt;&amp;quot;,
-      &amp;quot;host&amp;quot;: &amp;quot;&amp;lt;staging IP or domain&amp;gt;&amp;quot;,
-      &amp;quot;ref&amp;quot;: &amp;quot;origin/&amp;lt;staging branch&amp;gt;&amp;quot;,
-      &amp;quot;repo&amp;quot;: &amp;quot;git@github.com:&amp;lt;github username&amp;gt;/&amp;lt;project name&amp;gt;.git&amp;quot;,
-      &amp;quot;path&amp;quot;: &amp;quot;/var/www/&amp;lt;staging directory&amp;gt;&amp;quot;,
-      &amp;quot;post-deploy&amp;quot;: &amp;quot;npm install --production &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env staging&amp;quot;,
-      &amp;quot;env&amp;quot;: {
-        &amp;quot;NODE_ENV&amp;quot;: &amp;quot;staging&amp;quot;
-      }
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In the above config, &amp;ldquo;script&amp;rdquo; under &amp;ldquo;apps&amp;rdquo; array refers to the entry-point script you made above. I&amp;rsquo;ve been calling it &lt;code&gt;index.js&lt;/code&gt; in this post. I for my &lt;code&gt;staging&lt;/code&gt; config I tell PM2 to set my &lt;code&gt;NODE_ENV&lt;/code&gt; variable to be set to &amp;ldquo;staging&amp;rdquo; because in my config.js I have a &amp;ldquo;staging&amp;rdquo; key. Ghost will load the config key of the same name as the value of &lt;code&gt;NODE_ENV&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;deploy-key&#34;&gt;Deploy Key&lt;/h3&gt;
-
-&lt;p&gt;If your server is new you may not have setup public/private keypair authentication. Follow the instructions &lt;a href=&#34;https://help.github.com/articles/generating-ssh-keys/#platform-linux&#34;&gt;Github provides&lt;/a&gt;. You&amp;rsquo;ll then want to add this key as a deploy key for your project on Github. This will allow PM2 to authenticate with Github to clone the repo.&lt;/p&gt;
-
-&lt;p&gt;While you are also connected to the server you should install PM2 using npm, just as you did before locally (&lt;code&gt;npm install -g pm2&lt;/code&gt;).&lt;/p&gt;
-
-&lt;h3 id=&#34;deploying&#34;&gt;Deploying&lt;/h3&gt;
-
-&lt;p&gt;Be sure that Github is in the server&amp;rsquo;s &lt;code&gt;known_hosts&lt;/code&gt; file or you&amp;rsquo;ll get cloning errors. This can be done by running &lt;code&gt;ssh git@github.com&lt;/code&gt; on the server and accepting the prompt to add it to the file.&lt;/p&gt;
-
-&lt;p&gt;We need to have PM2 setup the server for deployment. Run &lt;code&gt;pm2 deploy &amp;lt;ecosystem.json config key&amp;gt; setup&lt;/code&gt; from your local machine. For example, to setup my &amp;ldquo;staging&amp;rdquo; config above I would run &lt;code&gt;pm2 deploy staging setup&lt;/code&gt;. I would expect to see something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ pm2 deploy staging setup
---&amp;gt; Deploying to staging environment
---&amp;gt; on host &amp;lt;staging IP or domain&amp;gt;
-  ○ running setup
-  ○ cloning git@github.com:alecho/&amp;lt;project name&amp;gt;.git
-Cloning into &#39;/var/www/&amp;lt;staging directory&amp;gt;/source&#39;...
-Warning: Permanently added the RSA host key for IP address &#39;**Github&#39;s IP here**&#39; to the list of known hosts.
-  ○ setup complete
---&amp;gt; Success
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Once PM2 is done setting up the server run &lt;code&gt;pm2 deploy &amp;lt;ecosystem.json config key&amp;gt;&lt;/code&gt;. Just like above, this would be &lt;code&gt;pm2 deploy staging&lt;/code&gt; for my staging environment and should output something like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ pm2 deploy staging
---&amp;gt; Deploying to staging environment
---&amp;gt; on host &amp;lt;staging IP or &amp;gt;
-  ○ deploying
-  ○ hook pre-deploy
-  ○ fetching updates
-Fetching origin
-Warning: Permanently added the RSA host key for IP address &#39;**Github&#39;s IP here**&#39; to the list of known hosts.
-  ○ resetting HEAD to origin/staging
-HEAD is now at &amp;lt;git hash for latest commit on origin/staging&amp;gt; &amp;lt;commit message here&amp;gt;
-  ○ executing post-deploy `npm install &amp;amp;&amp;amp; pm2 startOrRestart ecosystem.json --env staging`
-
-** npm install output here **
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You shoudl then see the typical output of &lt;code&gt;pm2 list&lt;/code&gt; with the Ghost blog process running followed by:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt; Use `pm2 show &amp;lt;id|name&amp;gt;` to get more details about an app
-  ○ hook test
-  ○ successfully deployed origin/staging
---&amp;gt; Success
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;that-s-it&#34;&gt;That&amp;rsquo;s It!&lt;/h3&gt;
-
-&lt;p&gt;You&amp;rsquo;re now able to deploy your latest changes to staging and production environments with ease. There&amp;rsquo;s no reason you couldn&amp;rsquo;t setup a deveopment enviroment with PM2 as well but I find that Ghost is easy enough to just &amp;ldquo;clone&amp;rdquo;, &amp;ldquo;install&amp;rdquo;, and &amp;ldquo;start&amp;rdquo; that I haven&amp;rsquo;t yet.&lt;/p&gt;
-
-&lt;p&gt;If you run into issues or know of a better way of doing things let me know in the comments.&lt;/p&gt;
 </description>
     </item>
     

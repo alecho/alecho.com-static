@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-US" >
+
+<head>
+    <meta charset="utf-8">
+
+    <base href="http://alecho.github.io/alecho">
+    <title>The Blog of Andrew Lechowicz</title>
+    <link rel="canonical" href="http://alecho.github.io/alecho/getting-ready-for-cakephp-3">
+    <link href="" rel="alternate" type="application/rss+xml" title="The Blog of Andrew Lechowicz" />
+    <meta name="HandheldFriendly" content="True">
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-35137333-2', 'alecho.com');
+ga('send', 'pageview');
+</script>
+
+
+<link href="/alecho/css/style.css" rel="stylesheet" type="text/css" />
+
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200%7CSource+Code+Pro:200%7CArchitects+Daughter&amp;subset=latin,latin,latin" media="all">
+<script>
+WebFont.load({google:{families:[ 'Source+Sans+Pro:200:latin', 'Source+Code+Pro:200:latin', 'Architects+Daughter::latin' ]}});
+</script>
+
+
+</head>
+
+<body lang="en">
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://alecho.com/">alecho.com</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li>
+        <a class="" href="http://alecho.com/about/">About</a>
+      </li>
+      <li>
+        <a class="" href="http://alecho.com/contact/">Contact</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<main role="main">
+
+	<article class="post">
+		<header>
+      <h1>Getting Ready for CakePHP 3</h1>
+				<img class="author-image img-circle" src="//www.gravatar.com/avatar/c8cb3c8d5707b9a3177e22de0701f56d?d=404">
+				<h4 class="author-name">Andrew Lechowicz</h4>
+			<span class="post-meta">
+        <time datetime="2015-05-01">19 May 2014</time>
+			</span>
+		</header>
+
+		<section class="post-content">
+      
+
+<p>With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.</p>
+
+<h2 id="php-5-4-span-class-muted-3-span">PHP 5.4<span class="muted">.3</span></h2>
+
+<h3 id="new-features">New Features</h3>
+
+<ul>
+<li><a href="#traits">Traits</a></li>
+<li><a href="#classmemberaccessoninstantiation">Class Member Access on Instantiation</a></li>
+<li><a href="#shortarraysyntax">Short Array Syntax</a></li>
+<li><a href="shortecho">Short Echo</a></li>
+</ul>
+
+<h3 id="traits">Traits</h3>
+
+<p>Traits are probably one of the most technical features I will address in this post. If you get lost just remember; traits are just like copy &amp; paste.</p>
+
+<p>If you&rsquo;re familiar with languages such as C++, Pearl, Python, or Scala then you&rsquo;re probably familiar with the concept of multiple inheritance and some of the problems that it can pose to a developer. I&rsquo;m a dog person so let&rsquo;s take a look at the following psudo code that defines four very simple &lsquo;dog&rsquo; classes:</p>
+
+<pre><code>class Dog {
+    public function bark() {
+        echo 'woof';
+    }
+}
+
+class BorderCollie extends Dog {
+}
+
+/**
+ * The Basenji's nickname is the barkless 
+ * dog.  YouTube it.
+ */
+class Basenji extends Dog{
+    public function bark() {
+        echo 'baroo';
+    }
+}
+
+/**
+ * This isn't valid PHP and just serves as
+ * a psudo code example of multiple
+ * inheritance.
+ * This class does not override bark()
+ */
+class Mutt extends Basenji and extends BorderCollie {
+}
+</code></pre>
+
+<p>That all looks fine except when we try to do this:</p>
+
+<pre><code>$Mutt = new Mutt;
+$Mutt-&gt;bark();
+</code></pre>
+
+<p>What does our <code>$Mutt</code> object echo? \&ldquo;Woof\&ldquo;? \&ldquo;Baroo\&ldquo;? The answer is we don&rsquo;t know. Both the <code>Basenji</code> and <code>BorderCollie</code> classes have a <code>bark()</code> method and thus our <code>Mutt</code> class must have a <code>bark()</code> method. The problem is that the call is ambiguous. PHP wouldn&rsquo;t know (if it supported multiple inheritance) which parent&rsquo;s method to call.</p>
+
+<p>PHP is a single inheritance language and looks to use <a href="http://php.net/traits">traits</a> to keep code <abbr title="Don't Repeat Yourself">DRY</abbr> by allowing a developer to reuse methods and properties across classes that may or may not be related.</p>
+
+<h4 id="what-is-a-trait">What is a trait?</h4>
+
+<p>From the PHP docs:</p>
+
+<blockquote>
+<p>A Trait is similar to a class, but only intended to group functionality in a fine-grained and consistent way. It is not possible to instantiate a Trait on its own. It is an addition to traditional inheritance and enables horizontal composition of behavior; that is, the application of class members without requiring inheritance.<footer>From the PHP docs <cite title=\"http://php.net/traits\">php.net/traits</cite></footer></p>
+</blockquote>
+
+<h4 id="using-traits">Using Traits</h4>
+
+<p>So how do we use a trait? Simple, use the <code>use</code> keyword inside of a class definition:</p>
+
+<pre><code>class Dog {
+    public function bark() {
+        echo 'woof';
+    }
+}
+
+trait basenjiTrait {
+    public function bark() {
+        echo 'baroo';
+    }
+}
+
+class Mutt extends Dog {
+    use basenjiTrait;
+}
+
+$Mutt = new MyHelloWorld();
+$Mutt-&gt;bark();
+
+class Mutt extends BorderCollie {
+    use basenjiTrait;
+}
+</code></pre>
+
+<p>The <code>Mutt</code> class now has access to any methods and properties that <code>dogTrait</code> would have defined.</p>
+
+<h4 id="creating-traits">Creating Traits</h4>
+
+<p>Creating traits is easy. It&rsquo;s just like creating a class. We begin with the keyword <code>trait</code> follow by the name we want to give our trait. Traits can&rsquo;t implement interfaces or extend classes or other traits. Remember traits are meant to solve the problem of code reuse in single inhertance lanuages.</p>
+
+<h4 id="real-world">Real World</h4>
+
+<p>(TODO Talk about CakePHP 3&rsquo;s use of the <code>Log Trait</code>)</p>
+
+<h3 id="class-member-access-on-instantiation">Class Member Access on Instantiation</h3>
+
+<p>A PHP developer can use Class Member Access on Instantiation when they need access to one or more of an objects methods or access to a single property and then no longer need the object or a reference to it.</p>
+
+<p>Here&rsquo;s what we might do in &lt; 5.4.0:
+<pre><code class=\"php\">// Create the obejct and save in variable
+$object = new Object;</p>
+
+<p>// Use the new object to do something, saving the return value for use later.
+$result = $object-&gt;something();</p>
+
+<p>//optionally remove the object from memory because we no longer need it.
+unset($object);
+</code></pre></p>
+
+<p>In 5.4.0+ we can simply do the following:</p>
+
+<pre><code>$result = (new Object)-&gt;something();
+</code></pre>
+
+<p>The new object we created with <code>(new Object)</code> was not saved into a variable so there&rsquo;s nothing to unset.</p>
+
+<h3 id="short-array-syntax">Short Array Syntax</h3>
+
+<p>instead of using the language construct <code>array()</code> each time you need an <code>array</code> data structure you can now use the short array syntax <code>[]</code>.</p>
+
+<pre><code>// These are equivalent
+$a = array('apple', 'banana', 'pear');
+$b = ['apple', 'banana', 'pear'];
+
+// And so are these
+$a = array('one' =&gt; 1, 'two' =&gt; 2 'three' =&gt; 3)
+$b = ['one' =&gt; 1, 'two' =&gt; 2 'three' =&gt; 3];
+
+// Multidimentional arrays work as you would expect
+$milti = [
+    ['Post' =&gt; 
+        [
+            'id' =&gt; 1,
+            'title' =&gt; 'The title',
+            'body' =&gt; 'This is the post body.'
+        ]
+    ],
+    ['Post' =&gt;
+        [
+            'id' =&gt; 2,
+            'title' =&gt; 'A title once again',
+            'body' =&gt; 'And the post body follows.'
+        ]
+    ],
+    ['Post' =&gt;
+        [
+            'id' =&gt; 3
+            'title' =&gt; 'Title strikes back',
+            'body' =&gt; 'This is really exciting! Not'
+        ]
+    ]
+];
+</code></pre>
+
+<h3 id="short-echo">Short Echo</h3>
+
+<p>PHP&rsquo;s short echo syntax is probably my favorite feature that becomes reliable in PHP 5.4 only because it makes PHP <em>feel</em> like a templating language.</p>
+
+<p>The short echo should be used in <strong>only</strong> in view files (*.ctp) in place of <code>&lt;?php echo</code>. It should be used to only print a single variable, array value, function, or method. The structure it outputs should be surrounded or either side by a single space, and closed with the php closing tag (<code>?&gt;</code>). It should not contain a semicolon.</p>
+
+<pre><code>// So something like:
+&lt;?php echo $user['User']['name']; ?&gt;
+
+// Becomes
+&lt;?= $user['User']['name'] ?&gt;
+
+// Functions are cool too
+&lt;?= $this-&gt;Html-&gt;link('Dashboard', [
+    'controller' =&gt; 'dashboards',
+    'action' =&gt; 'index'
+]) ?&gt;
+</code></pre>
+
+<p>The most important part of the short echo tag is that is it no longer affected by the <a href="http://docs.php.net/manual/en/ini.core.php#ini.short-open-tag"><code>short_open_tag</code></a> directive.  As of PHP 5.4.0 <code>&lt;?=</code> is <strong>always</strong> available.</p>
+
+<p><a href="https://github.com/cakephp/cakephp/pull/2596">https://github.com/cakephp/cakephp/pull/2596</a></p>
+
+<h4 id="other-features-added">Other Features added</h4>
+
+<ul>
+<li>The typehint <code>callable</code></li>
+<li>Sessions can track file <a href="http://docs.php.net/manual/en/session.upload-progress.php">upload progress</a></li>
+<li>\&ldquo;Improved\&rdquo; incompatible arguments warnings.</li>
+<li>Closures support <code>$this</code></li>
+</ul>
+
+<h3 id="removed-features">Removed Features</h3>
+
+<h2 id="php-5-5-span-class-muted-6-span">PHP 5.5<span class=\"muted\">.6</span></h2>
+
+<p><blockquote class=\"twitter-tweet\" lang=\"en\"><p><a href=\"https://twitter.com/search?q=%23PHP&amp;src=hash\">#PHP</a> 5.5.5 vs 5.5.6 <a href=\"https://twitter.com/search?q=%23performance&amp;src=hash\">#performance</a> difference at <a href=\"https://twitter.com/bownty\">@bownty</a> <a href=\"https://twitter.com/search?q=%23cakephp&amp;src=hash\">#cakephp</a> app - <a href=\"http://t.co/M1JOXRrzoG\"><a href="http://t.co/M1JOXRrzoG">http://t.co/M1JOXRrzoG</a></a> (24h graph) no code changes - ~30ms faster &lt;3</p>&mdash; Christian Winther (@Jippi) <a href=\"https://twitter.com/Jippi/statuses/403110925860761601\">November 20, 2013</a></blockquote>
+<script async src=\"//platform.twitter.com/widgets.js\" charset=\"utf-8\"></script></p>
+
+<p>Here&rsquo;s the code from the PHP source in question as it exists in the 5.5.5 tag:</p>
+
+<pre><code>for (i = 0; i &lt; argc; i++) {
+    SEPARATE_ZVAL(args[i]);
+    if (!replace) {
+        php_array_merge(Z_ARRVAL_P(return_value), Z_ARRVAL_PP(args[i]), recursive TSRMLS_CC);
+    } else if (recursive &amp;&amp; i &gt; 0) { /* First array will be copied directly instead */
+        php_array_replace_recursive(Z_ARRVAL_P(return_value), Z_ARRVAL_PP(args[i]) TSRMLS_CC);
+    } else {
+        zend_hash_merge(Z_ARRVAL_P(return_value), Z_ARRVAL_PP(args[i]), (copy_ctor_func_t) zval_add_ref, NULL, sizeof(zval *), 1);
+    }
+}
+</code></pre>
+
+<p>The line in question is the first line of the loop. PHP uses the <code>SEPARATE_ZVAL</code> macro internally for copy-on-write functionality. It creates a separate copy of a zval (a type of data container) if the container has multiple references. In the 5.5.6 tag it has simply been removed because the copying behavior does not serve a purpose. Many PHP frameworks, CakePHP included, use <code>array_merge()</code> and <code>func_get_args()</code></p>
+
+<p><a href="http://www.php.net/ChangeLog-5.php#5.5.6">http://www.php.net/ChangeLog-5.php#5.5.6</a></p>
+
+    </section>
+
+		<footer class="row">
+
+			<section class="author col-sm-8">
+					<img class="author-image img-circle pull-left" src="//www.gravatar.com/avatar/c8cb3c8d5707b9a3177e22de0701f56d?d=404" width="100">
+					<h4 class="author-name">Andrew Lechowicz</h4>
+					<p class="author-bio"></p>
+			</section>
+
+			<section class="share col-sm-4">
+				<h4>Share this post</h4>
+				<a class="icon-twitter" href="http://twitter.com/share?text=Develop%20%26%20Deploy%20Ghost%20with%20PM2&amp;url=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" style="display: none !important;">
+				<span class="hidden">Twitter</span>
+				</a>
+				<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" style="display: none !important;">
+				<span class="hidden">Facebook</span>
+				</a>
+				<a class="icon-google-plus" href="https://plus.google.com/share?url=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" style="display: none !important;">
+				<span class="hidden">Google+</span>
+				</a>
+			</section>
+
+		</footer>
+
+
+	</article>
+
+	<div id="disqus_thread"></div>
+	<noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+
+</main>
+
+<footer class="page-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-xs-3">
+            <a href="http://alecho.com/rss/">
+              <i class="fa fa-rss"></i>
+            </a>
+          </div>
+          <div class="col-xs-3">
+            <a href="https://github.com/alecho" title="Follow me on GitHub" target="_blank">
+              <i class="fa fa-github"></i>
+            </a>
+          </div>
+          <div class="col-xs-3">
+            <a href="https://twitter.com/_alecho" title="Follow me on Twitter" target="_blank" style="display: none !important;">
+              <i class="fa fa-twitter" style="display: none !important;"></i>
+            </a>
+          </div>
+          <div class="col-xs-3">
+            <a class="stackoverflow" href="http://stackoverflow.com/users/1112785/alecho" title="StackOverflow" target="_blank">
+              <i class="fa fa-stack-overflow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
+  </div>
+  <p class="text-center">
+  All content copyright <a href="http://alecho.com/">Andrew Lechowicz</a> © 2016 • All rights reserved.
+  </p>
+  <p class="text-center">
+  <small>
+    Built with <a href="https://gohugo.io" target="_blanlk">Hugo</a> version 0.16
+  </small>
+  </p>
+</footer>
+
+</body>
+<script type="text/javascript">
+  var disqus_shortname = 'alecho'; 
+
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+</body>
+</html>
+

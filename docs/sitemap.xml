@@ -7,32 +7,22 @@
   </url>
   
   <url>
-    <loc>http://alecho.github.io/alecho/page/contact/</loc>
+    <loc>http://alecho.github.io/alecho/contact</loc>
     <lastmod>2016-09-03T00:14:58-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://alecho.github.io/alecho/2016/09/02/random-hamburger-or-how-i-learned-to-write-software-while-working-in-fast-food</loc>
-    <lastmod>2016-09-02T23:51:08-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alecho.github.io/alecho/2016/09/02/json-api-with-phoenix</loc>
-    <lastmod>2016-09-02T23:46:17-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alecho.github.io/alecho/2016/08/28/getting-ready-for-cakephp-3</loc>
-    <lastmod>2016-08-28T14:36:32-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://alecho.github.io/alecho/2015/05/01/develop-and-deploy-ghost-with-pm2</loc>
+    <loc>http://alecho.github.io/alecho/develop--deploy-ghost-with-pm2</loc>
     <lastmod>2015-05-01T10:21:48-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://alecho.github.io/alecho/page/about/</loc>
+    <loc>http://alecho.github.io/alecho/getting-ready-for-cakephp-3</loc>
+    <lastmod>2014-05-19T14:36:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://alecho.github.io/alecho/about</loc>
     <lastmod>2014-03-03T00:27:07-04:00</lastmod>
   </url>
   
