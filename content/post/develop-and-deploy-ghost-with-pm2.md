@@ -1,6 +1,6 @@
 +++
 date = "2015-05-01T10:21:48-04:00"
-title = "develop and deploy ghost with pm2"
+title = "Develop & Deploy Ghost with PM2"
 
 +++
 <!-- Introduction here -->

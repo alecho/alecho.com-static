@@ -1,20 +1,18 @@
 baseurl = "http://alecho.github.io/alecho"
 languageCode = "en-us"
-title = "alecho.com"
+title = "The Blog of Andrew Lechowicz"
 publishdir = "docs"
 theme = "alecho"
 
-# Enable comments by entering your Disqus shortname
 disqusShortname = "alecho"
-# Enable Google Analytics by entering your tracking code
-googleAnalytics = ""
-# Define the number of posts per page
+googleAnalytics = "UA-35137333-2"
 paginate = 10
-footnotereturnlinkcontents = "↩"
+footnotereturnlinkcontents = "up"
 
 
 [permalinks]
-    post = "/:year/:month/:day/:slug"
+    page = ":slug"
+    post = ":slug"
 
 
 [params]

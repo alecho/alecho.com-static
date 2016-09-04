@@ -1,0 +1,63 @@
+{{ partial "document_open.html" }}
+{{ partial "head.html" . }}
+<body lang="en">
+{{ partial "header.html" . }}
+<main role="main">
+
+	<article class="post">
+		<header>
+      <h1>{{ .Title }}</h1>
+				<img class="author-image img-circle" src="//www.gravatar.com/avatar/c8cb3c8d5707b9a3177e22de0701f56d?d=404">
+				<h4 class="author-name">Andrew Lechowicz</h4>
+			<span class="post-meta">
+        <time datetime="2015-05-01">{{ .Date.Format "2 January 2006"}}</time>
+			</span>
+		</header>
+
+		<section class="post-content">
+      {{ .Content }}
+    </section>
+
+		<footer class="row">
+
+			<section class="author col-sm-8">
+					<img class="author-image img-circle pull-left" src="//www.gravatar.com/avatar/c8cb3c8d5707b9a3177e22de0701f56d?d=404" width="100">
+					<h4 class="author-name">Andrew Lechowicz</h4>
+					<p class="author-bio"></p>
+			</section>
+
+			<section class="share col-sm-4">
+				<h4>Share this post</h4>
+				<a class="icon-twitter" href="http://twitter.com/share?text=Develop%20%26%20Deploy%20Ghost%20with%20PM2&amp;url=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" style="display: none !important;">
+				<span class="hidden">Twitter</span>
+				</a>
+				<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" style="display: none !important;">
+				<span class="hidden">Facebook</span>
+				</a>
+				<a class="icon-google-plus" href="https://plus.google.com/share?url=http://alecho.com/develop-and-deploy-ghost-with-pm2/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" style="display: none !important;">
+				<span class="hidden">Google+</span>
+				</a>
+			</section>
+
+		</footer>
+
+
+	</article>
+
+	<div id="disqus_thread"></div>
+	<noscript>Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;</noscript>
+
+</main>
+
+{{ partial "footer.html" . }}
+</body>
+<script type="text/javascript">
+  var disqus_shortname = 'alecho'; // required: replace example with your forum shortname
+
+  (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+{{ partial "document_close.html" }}

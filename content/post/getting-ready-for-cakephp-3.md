@@ -1,12 +1,12 @@
 +++
-date = "2016-08-28T14:36:32-04:00"
+date = "2014-05-19T14:36:32-04:00"
 draft = false
 title = "Getting Ready for CakePHP 3"
 
 +++
 With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.
 
-## PHP 5.4<span class=\"muted\">.3</span>
+## PHP 5.4<span class="muted">.3</span>
 
 ### New Features
 
