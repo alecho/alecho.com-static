@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on The Blog of Andrew Lechowicz</title>
-    <link>http://alecho.github.io/alecho/post/</link>
+    <link>http://alecho.com/post/</link>
     <description>Recent content in Posts on The Blog of Andrew Lechowicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 01 May 2015 10:21:48 -0400</lastBuildDate>
-    <atom:link href="http://alecho.github.io/alecho/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://alecho.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Develop &amp; Deploy Ghost with PM2</title>
-      <link>http://alecho.github.io/alecho/develop--deploy-ghost-with-pm2</link>
+      <link>http://alecho.com/develop--deploy-ghost-with-pm2</link>
       <pubDate>Fri, 01 May 2015 10:21:48 -0400</pubDate>
       
-      <guid>http://alecho.github.io/alecho/develop--deploy-ghost-with-pm2</guid>
+      <guid>http://alecho.com/develop--deploy-ghost-with-pm2</guid>
       <description>
 
 &lt;!-- Introduction here --&gt;
@@ -221,10 +221,10 @@ HEAD is now at &amp;lt;git hash for latest commit on origin/staging&amp;gt; &amp
     
     <item>
       <title>Getting Ready for CakePHP 3</title>
-      <link>http://alecho.github.io/alecho/getting-ready-for-cakephp-3</link>
+      <link>http://alecho.com/getting-ready-for-cakephp-3</link>
       <pubDate>Mon, 19 May 2014 14:36:32 -0400</pubDate>
       
-      <guid>http://alecho.github.io/alecho/getting-ready-for-cakephp-3</guid>
+      <guid>http://alecho.com/getting-ready-for-cakephp-3</guid>
       <description>
 
 &lt;p&gt;With the release of CakePHP 3.0.0 Development Preview 2, I decided to go over some of the PHP features that you can now take advantage of with confidence since CakePHP 3 requires PHP 5.4.3+.&lt;/p&gt;
