@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>alecho.com</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script defer type="text/javascript" src="{{ get_url(path="app.js") }}"></script>
+  </head>
+  <body>
+    <section>
+      <div class="mx-auto container">
+        {% block content %} {% endblock %}
+      </div>
+    </section>
+  </body>
+</html>
