@@ -1,6 +1,6 @@
 const path = require("path");
 
-module.exports = {
+let config = {
   entry: {
     app: "./js/app.js"
   },
@@ -25,5 +25,18 @@ module.exports = {
   },
   devtool: "source-map",
   mode: "development",
-  watch: true
+  watch: true,
+  watchOptions: {
+    ignored: /node_modules/
+  }
+};
+
+module.exports = (env, argv) => {
+
+  if (argv.mode === 'production') {
+    config.watch = false;
+    config.devtool = '';
+  }
+
+  return config;
 };
