@@ -1,0 +1,12 @@
+{
+  "name": "alecho.com",
+  "version": "0.0.1",
+  "description": "alecho.com assets",
+  "main": "index.js",
+  "author": "Andrew Lechowicz",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
