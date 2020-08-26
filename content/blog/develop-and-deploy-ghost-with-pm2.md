@@ -82,7 +82,7 @@ port to listen on and how to send emails, we need a configuration file and we
 need to tell Ghost where it is.
 
 Grab the example config from
-[Github](https://github.com/TryGhost/Ghost/blob/master/config.example.js) or
+[Github](https://github.com/TryGhost/Ghost/blob/d10ae70982ed8e99690402940eb2179b3ccade87/config.example.js) or
 copy it from `/node_modules/ghost/config.example.js`. Run `cp
 node_modules/ghost/config.example.js config.js` to copy the one npm grabbed for
 you. Edit the new `config.js` to remove any testing related configs for the
@@ -205,7 +205,7 @@ config key of the same name as the value of `NODE_ENV`.
 
 If your server is new you may not have setup public/private keypair
 authentication. Follow the instructions [Github
-provides](https://help.github.com/articles/generating-ssh-keys/#platform-linux).
+provides](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 You'll then want to add this key as a deploy key for your project on Github.
 This will allow PM2 to authenticate with Github to clone the repo.
 
