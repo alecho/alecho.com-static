@@ -1,9 +1,50 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h1 class="text-4xl">
-  {{ page.title }}
-</h1>
-<p class="text-2xl"><strong>{{ page.date }}</strong></p>
-<p>{{ page.content | safe }}</p>
+{% extends "base.html" %} {% block content %}
+<div class="pt-8 lg:py-16 bg-cover bg-center">
+  <div class="mx-auto max-w-5xl">
+    <h1
+      class="text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10"
+    >
+      {{ page.title }}
+    </h1>
+  </div>
+</div>
+<div class="flex">
+  <div class="flex-1 mx-2">
+    <span
+      class="text-base leading-6 text-orange-600 font-semibold tracking-wide uppercase"
+    >
+      Table of Contents:
+    </span>
+    <ul>
+      {% for h1 in page.toc %}
+      <li>
+        <a href="{{h1.permalink | safe}}">{{ h1.title }}</a>
+        {% if h1.children %}
+        <ul class="pl-4">
+          {% for h2 in h1.children %}
+          <li>
+            <a href="{{h2.permalink | safe}}">{{ h2.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="flex-none mx-2">
+    <span
+      class="text-base leading-6 text-orange-600 font-semibold tracking-wide uppercase"
+    >
+      Published:
+    </span>
+    <time datetime="{{ page.date }}">
+      {{ page.date | date(format="%b %d, %Y") }}
+    </time>
+    <div class="markdown mx-auto">
+      {{ page.content | safe }}
+    </div>
+  </div>
+  <div class="flex-1 mx-2"></div>
+</div>
 {% endblock content %}

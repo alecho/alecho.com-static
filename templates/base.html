@@ -1,18 +1,266 @@
 <!DOCTYPE html>
-<html>
+<html class="antialiased font-sans text-base">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>alecho.com</title>
+    <link rel="stylesheet" href="{{ get_url(path='app.css') }}" />
     <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
       rel="stylesheet"
     />
-    <script defer type="text/javascript" src="{{ get_url(path="app.js") }}"></script>
+    <script
+      src="https://kit.fontawesome.com/c756a4a629.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="{{ get_url(path='app.js') }}"></script>
   </head>
-  <body>
-    <div class="mx-auto container">
-      {% block content %} {% endblock %}
+  <body class="min-h-screen">
+    <div class="relative bg-gray-50">
+      <div
+        class="relative bg-gradient-to-r from-purple-500 via-pink-600 to-orange-500 shadow"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+          <div
+            class="flex justify-between items-center py-4 md:justify-start md:space-x-10"
+          >
+            <div class="w-0 flex-1 flex">
+              <a
+                href="/"
+                class="inline-flex text-white mr-3 h-6 w-6 text-opacity-75 hover:text-opacity-100 transition-all ease-in-out duration-150"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+              </a>
+            </div>
+            <div class="-mr-2 -my-2 md:hidden">
+              <button
+                type="button"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+              ></button>
+            </div>
+            <nav class="hidden md:flex space-x-10">
+              <a
+                href="/blog"
+                class="text-white inline-flex items-center space-x-2 text-base leading-6 font-bold text-opacity-75 hover:text-opacity-100 transition ease-in-out duration-150"
+              >
+                Blog
+              </a>
+              <a
+                href="#"
+                class="text-white text-base leading-6 font-bold text-opacity-75 hover:text-opacity-100 transition ease-in-out duration-150"
+              >
+                Contact
+              </a>
+              <a
+                href="#"
+                class="text-white text-base leading-6 font-bold text-opacity-75 hover:text-opacity-100 transition ease-in-out duration-150"
+              >
+                Résumé
+              </a>
+              <a
+                href="#"
+                class="text-white inline-flex items-center space-x-2 text-base leading-6 font-bold text-opacity-75 hover:text-opacity-100 transition ease-in-out duration-150"
+              >
+                More
+              </a>
+            </nav>
+            <div
+              class="hidden md:flex items-center justify-end space-x-8 md:flex-1 lg:w-0"
+            >
+              <a
+                href="https://github.com/alecho"
+                target="_blank"
+                class="text-white mr-3 h-6 w-6 text-opacity-75 hover:text-opacity-100 transition-all ease-in-out duration-150"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.463 2 11.97c0 4.404 2.865 8.14 6.839 9.458.5.092.682-.216.682-.48 0-.236-.008-.864-.013-1.695-2.782.602-3.369-1.337-3.369-1.337-.454-1.151-1.11-1.458-1.11-1.458-.908-.618.069-.606.069-.606 1.003.07 1.531 1.027 1.531 1.027.892 1.524 2.341 1.084 2.91.828.092-.643.35-1.083.636-1.332-2.22-.251-4.555-1.107-4.555-4.927 0-1.088.39-1.979 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.606 9.606 0 0112 6.82c.85.004 1.705.114 2.504.336 1.909-1.29 2.747-1.022 2.747-1.022.546 1.372.202 2.386.1 2.638.64.696 1.028 1.587 1.028 2.675 0 3.83-2.339 4.673-4.566 4.92.359.307.678.915.678 1.846 0 1.332-.012 2.407-.012 2.734 0 .267.18.577.688.48C19.137 20.107 22 16.373 22 11.969 22 6.463 17.522 2 12 2z"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        Mobile menu, show/hide based on mobile menu state.
+
+        Entering: "duration-200 ease-out"
+          From: "opacity-0 scale-95"
+          To: "opacity-100 scale-100"
+        Leaving: "duration-100 ease-in"
+          From: "opacity-100 scale-100"
+          To: "opacity-0 scale-95"
+      -->
+      <div
+        class="absolute top-0 inset-x-0 z-10 p-2 transition transform origin-top-right md:hidden"
+      >
+        <div class="rounded-lg shadow-lg">
+          <div class="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
+            <div class="pt-5 pb-6 px-5 space-y-6">
+              <div class="flex items-center justify-between">
+                <div>
+                  <img
+                    class="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+                    alt="Workflow"
+                  />
+                </div>
+                <div class="-mr-2">
+                  <button
+                    type="button"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                  >
+                    <svg
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <nav class="grid row-gap-8">
+                  <a
+                    href="#"
+                    class="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
+                  >
+                    <svg
+                      class="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      />
+                    </svg>
+                    <div class="text-base leading-6 font-medium text-gray-900">
+                      Analytics
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
+                  >
+                    <svg
+                      class="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                      />
+                    </svg>
+                    <div class="text-base leading-6 font-medium text-gray-900">
+                      Engagement
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
+                  >
+                    <svg
+                      class="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                    <div class="text-base leading-6 font-medium text-gray-900">
+                      Security
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
+                  >
+                    <svg
+                      class="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                      />
+                    </svg>
+                    <div class="text-base leading-6 font-medium text-gray-900">
+                      Integrations
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
+                  >
+                    <svg
+                      class="flex-shrink-0 h-6 w-6 text-indigo-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                      />
+                    </svg>
+                    <div class="text-base leading-6 font-medium text-gray-900">
+                      Automations
+                    </div>
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <main class="w-full">
+      {% block content %} {% endblock %}
+    </main>
   </body>
 </html>
