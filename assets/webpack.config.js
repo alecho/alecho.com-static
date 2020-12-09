@@ -60,7 +60,7 @@ module.exports = (env, argv) => {
 
   if (argv.mode === 'production') {
     config.watch = false;
-    config.devtool = '';
+    config.devtool = false;
   }
 
   return config;

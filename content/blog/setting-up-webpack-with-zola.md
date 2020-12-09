@@ -1,6 +1,6 @@
 +++
 title = "Configuring Zola and Webpack"
-date = 2020-08-22
+date = 2020-08-27
 description = """
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit facilis
 asperiores porro quaerat doloribus, eveniet dolore.  Adipisci tempora aut

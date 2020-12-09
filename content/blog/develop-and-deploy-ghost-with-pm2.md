@@ -5,8 +5,11 @@ date = 2015-05-01
 [taxonomies]
 tags = ["javascript", "ghost", "pm2"]
 categories = ["Web Development"]
+[extra]
+inaccurate_date = 2015-05-01
 +++
 <!-- Introduction here -->
+<!-- more -->
 
 ## Setting Up
 
